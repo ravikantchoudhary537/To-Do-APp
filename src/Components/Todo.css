@@ -1,0 +1,71 @@
+.to-do-app-body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgb(153, 192, 193);
+}
+.to-do-app-body h1{
+    text-align: center;
+}
+.to-do-app{
+    margin: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-box{
+    width: 500px;
+    padding-top: 30px;
+    font-weight: 700;
+    background-color: rgb(78, 221, 221);
+    height: 30vh;;
+    color:rgb(73, 18, 18);
+}
+.input-box input{
+    width: 200px;
+    height: 20px;
+    border: 2px solid rgb(102, 255, 0);
+    border-radius: 4px;
+}
+
+.input-box input {
+    outline: none;
+}
+.input-box label{
+    margin:20px;
+    padding:42px;
+}
+button{
+    padding: 8px;
+    color:white;
+    background-color: black;
+    margin: 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+}
+.add-btn{
+    margin: 20px 0 0 200px;
+}
+.edit-btn{
+    background-color: greenyellow;
+    color:rgb(59, 60, 137);
+}
+.delete-btn{
+    background-color: rgb(240, 34, 34);
+}
+.table{
+    /* border: 2px solid red; */
+    border-collapse: collapse;
+    background-color: rgb(72, 112, 206);
+    color: #ffffff;
+}
+.table th{
+    /* padding: 12px; */
+    color:rgb(214, 224, 22);
+    /* border: 2px solid rgb(255, 0, 0); */
+}
+.table td,.table th{
+    padding: 12px;
+    border: 2px solid rgb(238, 255, 0);
+}
