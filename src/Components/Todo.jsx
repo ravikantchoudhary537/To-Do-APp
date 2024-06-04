@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Todo.css";
 
 const Todo = () => {
-  // const [userData,setuserData]=useState([]);
+  // const [todoData,setTodoData]=useState([]);
   // const [formData, setFormData] = useState({
   //   id:'',
   //   topic: "",
@@ -12,36 +12,36 @@ const Todo = () => {
   // const onChangeHandle=(e)=>{
   //   const {name,value}=e.target;
   //   // const newdata={name,value};
-  //   // setuserData((prevuserData)=>[
-  //   //     ...prevuserData,newdata
+  //   // setTodoData((prevTododata)=>[
+  //   //     ...prevTododata,newdata
   //   // ]);
   //   setFormData({
   //     ...formData,
   //      [name]:value,
   //   })
   // }
-  // // console.log(userData);
+  // // console.log(todoData);
 
   // const onSubmitHandle=(e)=>{
   //   e.preventDefault();
-  //   // if(!userData.topic){
+  //   // if(!todoData.topic){
   //   //     alert("Topic is required");
   //   //     return;
   //   // }
-  //   // if(!userData.description){
+  //   // if(!todoData.description){
   //   //     alert("Description is required");
   //   //     return;
   //   // }
   //   const newTodo={...formData,id:Date.now().toString()}
-  //   setuserData((prevuserData)=>[
-  //     ...prevuserData,newTodo
+  //   setTodoData((prevTododata)=>[
+  //     ...prevTododata,newTodo
   // ]);
   //   console.log("Data : ")
-  //   console.log(userData);
+  //   console.log(todoData);
 
-  //   // let finalTodo=[{...userData}];
-  //   // let final2={...finalTodo,...userData}
-  //   // setuserData({
+  //   // let finalTodo=[{...todoData}];
+  //   // let final2={...finalTodo,...todoData}
+  //   // setTodoData({
   //   //     topic: "",
   //   //     description: "",
   //   // })
@@ -50,7 +50,7 @@ const Todo = () => {
 
   // }
 
-  // const [userData, setuserData] = useState([]);
+  // const [todoData, setTodoData] = useState([]);
   // const [formData, setFormData] = useState({
   //   id: '1',
   //   topic: "task 1 sample",
@@ -76,11 +76,11 @@ const Todo = () => {
   //   //   return;
   //   // }
   //   const newTodo = { ...formData, id: Date.now().toString() };
-  //   setuserData((prevuserData) => [
-  //     ...prevuserData,
+  //   setTodoData((prevTodoData) => [
+  //     ...prevTodoData,
   //     newTodo,
   //   ]);
-  //   console.log("Data: ", userData);
+  //   console.log("Data: ", todoData);
   //   setFormData({
   //     id: '',
   //     topic: "",
@@ -88,178 +88,79 @@ const Todo = () => {
   //   });
   // };
 
+  const [todoData, setTodoData] = useState([]);
   const [formData, setFormData] = useState({
     id: 1,
     topic: "",
     description: "",
   });
-  
-  const [userData, setuserData] = useState([]);
 
-  const onChangeHandle = (event) => {
-    let oldData = { ...formData };
-    let inputName = event.target.name;
-    let inputValue = event.target.value;
-    oldData[inputName] = inputValue;
-    setFormData(oldData);
-  };
-
-
-  let onSubmitHandle = (event) => {
-    let currentUserFormatData = {
-      topic: formData.topic,
-      description: formData.description,
-      // uphone: formData.uphone,
-      // umessage: formData.umessage,
-    };
-
+  const onChangeHandle = (e) => {
+    const { name, value } = e.target;
     setFormData({
-      topic: "",
-      description: "",
-      // uphone: "",
-      // umessage: "",
-      // index: "",
+      ...formData,
+      [name]: value,
     });
-
-    if (formData.index === "") {
-      let checkFilterUser = userData.filter(
-        (v) => v.description == formData.description 
-      );
-
-      if (checkFilterUser.length == 1) {
-        alert("Email or Phone Already Exists !!!!");
-      } else {
-        let oldUserData = [...userData, currentUserFormatData];
-        setuserData(oldUserData);
-      }
-    } else {
-      let editIndex = formData.index;
-      let oldData = userData;
-
-      let checkFilterUser = userData.filter(
-        (v, i) =>
-          v.description == formData.description ||
-          ( i != editIndex)
-      );
-
-      if (checkFilterUser.length == 0) {
-        oldData[editIndex]["topic"] = formData.topic;
-        oldData[editIndex]["description"] = formData.description;
-        // oldData[editIndex]["uphone"] = formData.uphone;
-        // oldData[editIndex]["umessage"] = formData.umessage;
-        setuserData(oldData);
-        setFormData({
-          topic: "",
-          description: "",
-          // uphone: "",
-          // umessage: "",
-          // index: "",
-        });
-      } 
-      else {
-        alert("Email or Phone Already Exists !!!!");
-      }
-    }
-    event.preventDefault();
   };
 
-
-
-
-
-
-
-  // const onSubmitHandle = (e) => {
-  //   // e.preventDefault();
-  //   let currentUserFormatData = {
-  //     topic: formData.topic,
-  //     description: formData.description,
-  //   };
-  //   setFormData({
-  //     id: formData.id + 1,
-  //     topic: '',
-  //     description: '',
-  //   });
-
-  //   if (formData.index === "") {
-  //     let checkFilterUser = userData.filter(
-  //       (v) => v.topic == formData.topic 
-  //     );
-  //     if (checkFilterUser.length == 1) {
-  //       alert("Topic Already Exists !!!!");
-  //     } else {
-  //       let oldUserData = [...userData, currentUserFormatData];
-  //       setuserData(oldUserData);
-  //     }
-
-  //   } else {
-  //     let editIndex = formData.index;
-  //     let oldData = userData;
-
-  //     let checkFilterUser = userData.filter(
-  //       (v, i) =>
-  //         v.topic == formData.topic ||( i != editIndex)
-  //     );
-  //     if (checkFilterUser.length == 0) {
-  //       oldData[editIndex]["topic"] = formData.topic;
-  //       oldData[editIndex]["description"] = formData.description;
-        
-  //       setuserData(oldData);
-  //       setFormData({
-  //         topic: "",
-  //         description: "",
-  //       });
-  //     } 
-  //     else {
-  //       alert("Topic Already Exists !!!!");
-  //     }
-  //   }
-  //   e.preventDefault();
-  // };
-
-
-
-
-
-
-    // if (!formData.topic) {
-    //   alert("Topic is required");
-    //   return;
-    // }
-    // if (!formData.description) {
-    //   alert("Description is required");
-    //   return;
-    // }
-    // const newTodo = { ...formData, id: formData.id.toString() };
-    // setuserData((prevuserData) => [...prevuserData, newTodo]);
-    
-  
+  const onSubmitHandle = (e) => {
+    e.preventDefault();
+    if (!formData.topic) {
+      alert("Topic is required");
+      return;
+    }
+    if (!formData.description) {
+      alert("Description is required");
+      return;
+    }
+    const newTodo = { ...formData, id: formData.id.toString() };
+    setTodoData((prevTodoData) => [...prevTodoData, newTodo]);
+    setFormData({
+      id: formData.id + 1,
+      topic: '',
+      description: '',
+    });
+  };
 
   const deleteData=(number)=>{
     
 
-    const dataAfterDelete=userData.filter((item)=>item.id!=number);
+    const dataAfterDelete=todoData.filter((item)=>item.id!=number);
 
-    setuserData(dataAfterDelete);
+    setTodoData(dataAfterDelete);
     // console.log("data deleted");
-    // console.log(userData);
+    // console.log(todoData);
 
   }
-
 
   const editData=(id)=>{
     console.log("Edit function called")
+    const selectedEditData=todoData.find((item)=>item.id===id)
 
-   let selectedEditData=userData.filter((v,i)=>i==id)[0];
-    setFormData(selectedEditData);
-    console.log(selectedEditData);
+    console.log("Before selected : ",formData.topic[1]);
+    // setFormData(selectedEditData);
+    console.log("After selected : ",formData.topic);
+
+
+
+
+    let oldData=formData;
+
+    let editIndex=formData.index;
+
+    oldData[editIndex]['topic']=formData.topic;
+    oldData[editIndex]['description']=formData.description;
+    
+    // const updatedTodoData = todoData.map((item) =>
+    //   item.id === id ? { ...item, ...updatedData } : item
+    // );
+    // setTodoData(updatedTodoData);
 
   }
 
-
   useEffect(() => {
-    // console.log("Updated Data:", userData);
-  }, [userData]);
+    console.log("Updated Data:", todoData);
+  }, [todoData]);
 
   return (
     <div className="to-do-app-body">
@@ -313,7 +214,7 @@ const Todo = () => {
               <th>Action</th>
             </tr>
 
-            {userData.map((item, index) => (
+            {todoData.map((item, index) => (
               <tr key={index}>
                 <td>{index+1}</td>
                 <td>{item.topic}</td>

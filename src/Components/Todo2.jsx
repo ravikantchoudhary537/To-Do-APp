@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Todo2.css";
-import { getValue } from "@testing-library/user-event/dist/utils";
 
 let Todo2 = () => {
   let [formData, setFormData] = useState({
-    uname: "",
-    umail: "",
-    uphone: "",
+    topic: "",
+    description: "",
+    uTime: "",
     umessage: "",
     index: "",
   });
@@ -23,27 +22,27 @@ let Todo2 = () => {
 
   let handleSubmit = (event) => {
     let currentUserFormatData = {
-      uname: formData.uname,
-      umail: formData.umail,
-      uphone: formData.uphone,
+      topic: formData.topic,
+      description: formData.description,
+      uTime: formData.uTime,
       umessage: formData.umessage,
     };
 
     setFormData({
-      uname: "",
-      umail: "",
-      uphone: "",
+      topic: "",
+      description: "",
+      uTime: "",
       umessage: "",
       index: "",
     });
 
     if (formData.index === "") {
       let checkFilterUser = userData.filter(
-        (v) => v.umail == formData.umail || v.uphone == formData.uphone
+        (v) => v.description == formData.description || v.uTime == formData.uTime
       );
 
       if (checkFilterUser.length == 1) {
-        alert("Email or Phone Already Exists !!!!");
+        alert("Description or Time Already Exists !!!!");
       } else {
         let oldUserData = [...userData, currentUserFormatData];
         setuserData(oldUserData);
@@ -54,26 +53,26 @@ let Todo2 = () => {
 
       let checkFilterUser = userData.filter(
         (v, i) =>
-          v.umail == formData.umail ||
-          (v.uphone == formData.uphone && i != editIndex)
+          v.description == formData.description ||
+          (v.uTime == formData.uTime && i != editIndex)
       );
 
       if (checkFilterUser.length == 0) {
-        oldData[editIndex]["uname"] = formData.uname;
-        oldData[editIndex]["umail"] = formData.umail;
-        oldData[editIndex]["uphone"] = formData.uphone;
+        oldData[editIndex]["topic"] = formData.topic;
+        oldData[editIndex]["description"] = formData.description;
+        oldData[editIndex]["uTime"] = formData.uTime;
         oldData[editIndex]["umessage"] = formData.umessage;
         setuserData(oldData);
         setFormData({
-          uname: "",
-          umail: "",
-          uphone: "",
+          topic: "",
+          description: "",
+          uTime: "",
           umessage: "",
           index: "",
         });
       } 
       else {
-        alert("Email or Phone Already Exists !!!!");
+        alert("Description or Time Already Exists !!!!");
       }
     }
     event.preventDefault();
@@ -100,33 +99,33 @@ let Todo2 = () => {
        
         <form onSubmit={handleSubmit} className="crud-form">
           <div className="input-feilds">
-            <label>Name</label>
+            <label>Topic</label>
             <br />
             <input
               type="text"
               onChange={getValue}
-              value={formData.uname}
-              name="uname"
+              value={formData.topic}
+              name="topic"
             ></input>
           </div>
           <div className="input-feilds">
-            <label>Email</label>
+            <label>Description</label>
             <br />
             <input
-              type="email"
+              type="Description"
               onChange={getValue}
-              value={formData.umail}
-              name="umail"
+              value={formData.description}
+              name="description"
             ></input>
           </div>
           <div className="input-feilds">
-            <label>Phone</label>
+            <label>Time</label>
             <br />
             <input
               type="text"
               onChange={getValue}
-              value={formData.uphone}
-              name="uphone"
+              value={formData.uTime}
+              name="uTime"
             ></input>
           </div>
           <div className="input-feilds">
@@ -147,10 +146,10 @@ let Todo2 = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
+              <th>S NO.</th>
+              <th>Topic</th>
+              <th>Description</th>
+              <th>Time</th>
               <th>Message</th>
               <th>Action</th>
             </tr>
@@ -160,9 +159,9 @@ let Todo2 = () => {
                 return (
                   <tr key={i}>
                     <td>{i + 1}</td>
-                    <td>{obj.uname}</td>
-                    <td>{obj.umail}</td>
-                    <td>{obj.uphone}</td>
+                    <td>{obj.topic}</td>
+                    <td>{obj.description}</td>
+                    <td>{obj.uTime}</td>
                     <td>{obj.umessage}</td>
                     <td>
                       <button onClick={() => deleteRow(i)}>Delete</button>
